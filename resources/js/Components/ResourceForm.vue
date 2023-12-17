@@ -37,11 +37,11 @@ function createResource(){
     <input type="text" v-model="title" />
     <input type="text" v-model="description" />
     <input type="text" v-model="link" />
-    <select v-model="category_id">
-        <option v-for="category in categories" :key="category.id" :value="category.id">
-        {{ category.name }}
-        </option>
-    </select>
+        <select v-model="category_id">
+            <option v-for="category in categories" :key="category.id" :value="category.id">
+            {{ category.name }}
+            </option>
+        </select>
     <button @click="createResource">Crear recurso</button>
 </div>
 </template>
