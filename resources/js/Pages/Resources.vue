@@ -65,7 +65,7 @@ onMounted(() => {
                 </svg>
             </div>
 
-            <div class="relative overflow-x-auto">  
+            <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500">
                  <thead  class="text-lg text-gray-700 uppercase bg-gray-500">
                     <tr>
@@ -76,7 +76,7 @@ onMounted(() => {
                  </thead>
                  <tbody class="bg-white">
                     <tr v-for="resource in resources" :key="resource.id">
-                        <th scope="row" class="p-4 text-left">{{resource.title}}</th>
+                        <th scope="row" class="p-4" text-left>{{resource.title}}</th>
                         <th scope="row" class="p-4">
                             <a target="_blank" :href="resource.link">Ver recurso</a>                           
                         </th>
