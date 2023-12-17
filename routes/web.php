@@ -5,7 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ResourceController;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('api/resources', [ResourceController::class, 'search']);
-
 Route::middleware('auth')->post('api/resources', [ResourceController::class, 'store']);
-
+Route::middleware('auth')->get('api/categories', [CategoryController::class, 'index']);

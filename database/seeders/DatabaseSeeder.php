@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
+use App\Models\Resource;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,9 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = Category::factory()->count(5)->create();
+        Category::create(['name' => 'PHP']);
+        Category::create(['name' => 'JavaScript']);
+        Category::create(['name' => 'Vue.js']);
+        Category::create(['name' => 'React']);
 
-        foreach($categories as $category){
+        foreach(Category::all() as $category){
                 Resource::factory()->count(5)->create([
                     'category_id' => $category->id,
                 ]);
