@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Voter;
+use App\Models\Resource;
 use Illuminate\Http\Request;
-use App\Http\Resource;
-use App\Http\Voter;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
 
@@ -13,8 +13,7 @@ class VoteController extends Controller
     public function  __invoke(Request $request, Resource $resource)
     {
         //buscar o crear al votante 
-        $voterId = $request->cookie('voter_code');
-        $voter = Voter::where('code', $voterId)->first();
+        $voter = Voter::getOrCreateVoter($request);
 
         if(!$voter){
             $voter = Voter::create([

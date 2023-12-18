@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
+use App\Models\Voter;
 
 class ResourceController extends Controller
 {
@@ -17,6 +18,7 @@ class ResourceController extends Controller
             'canRegister' => Route::has('register'),
             'resources' => Resource::with('category', 'votes')->latest()->get(),
             'categories' => Category::all(),
+            'voterId' => Voter::getOrCreateVoter($request)->code,
         ]);
     }
 
@@ -27,7 +29,7 @@ class ResourceController extends Controller
             'link' => $request->link,
             'description' => $request->description,
             'category_id' => $request->category_id,
-            'creator_id' => $request->user()->id,
+            'creator_id' => $request->user()->id, 
         ]);
 
         return Inertia::location('/');
@@ -36,7 +38,7 @@ class ResourceController extends Controller
     public function search(Request $request)
     {
         return Resource::query()
-        ->when(!empty($request->search), function($query) use ($request) {
+        ->when(!empty($request->search), function ($query) use ($request) {
             return $query->where('title', 'like', "%$request->search%");
         })
         ->when(!empty($request->category), function ($query) use ($request){
