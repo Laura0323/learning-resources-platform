@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Category;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Resource>
@@ -18,7 +20,7 @@ class ResourceFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'category_id' => Category::new(),
+            'category_id' => Category::factory(),
             'link' => $this->faker->url,
             'description' => $this->faker->paragraph,
             'creator_id' => User::factory(),
